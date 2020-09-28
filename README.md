@@ -4,11 +4,11 @@ In deze repository vind je de labo-oefeningen voor Besturingssystemen/Linux van 
 
 ## Gegevens student
 
-- Naam: 
-- Klasgroep: 
-- Naam van je lector: Nathalie Declercq / Andy Van Maele / Bert Van Vreckem (schrap wat niet past)
-- Github gebruikersnaam: [GEBRUIKER](https://github.com/GEBRUIKER)
-- URL naar je Github-repository: <https://github.com/HoGentTIN/ilnx-GEBRUIKER>
+- Naam: Nicolas Van Damme
+- Klasgroep: PBA-TIN2-TI/2A
+- Naam van je lector: Bert Van Vreckem
+- Github gebruikersnaam: [Mustachipleb](https://github.com/Mustachipleb)
+- URL naar je Github-repository: <https://github.com/HoGentTIN/ilnx-Mustachipleb>
 
 ## Verslagen bijhouden
 
