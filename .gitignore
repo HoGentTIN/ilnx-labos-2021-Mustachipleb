@@ -1,0 +1,9 @@
+# .gitignore
+
+# Backup files
+*~
+
+# Large files
+*.iso
+*.ova
+
