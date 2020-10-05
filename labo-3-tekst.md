@@ -31,7 +31,7 @@ Maak ook een bestand aan met de naam `autokentekens` met deze inhoud:
 1. Hoe start je Vi op om deze bestanden aan te maken?
 
     ```
-    $ COMMANDO
+    $ sudo vim BESTANDSNAAM
     UITVOER
     ```
 
@@ -39,22 +39,22 @@ Maak ook een bestand aan met de naam `autokentekens` met deze inhoud:
 
     | Invoegen vanaf                  | Commando |
     | :---                            | :---     |
-    | op de huidige cursorpositie     | `X`      |
-    | rechts van de cursor            | `X`      |
-    | begin van huidige regel         | `X`      |
-    | einde van huidige regel         | `X`      |
-    | regel toevoegen onder deze      | `X`      |
-    | regel toevoegen op huidige lijn | `X`      |
+    | op de huidige cursorpositie     | `i`      |
+    | rechts van de cursor            | `a`      |
+    | begin van huidige regel         | `I`      |
+    | einde van huidige regel         | `A`      |
+    | regel toevoegen onder deze      | `o`      |
+    | regel toevoegen op huidige lijn | `O`      |
 
 3. Hoe kopieer je vanuit *normal mode*?
 
     | Te kopiëren                              | Commando |
     | :---                                     | :---     |
-    | Huidige regel                            | `X`      |
-    | Huidige regel en die eronder             | `X`      |
-    | Het huidige woord                        | `X`      |
-    | Het huidige en de twee volgende woorden  | `X`      |
-    | Van de cursor tot het einde van de regel | `X`      |
+    | Huidige regel                            | `yy`      |
+    | Huidige regel en die eronder             | `2yy`      |
+    | Het huidige woord                        | `yw`      |
+    | Het huidige en de twee volgende woorden  | `2yw`      |
+    | Van de cursor tot het einde van de regel | `y$`      |
     | Tot het einde van de *zin*               | `X`      |
     | Tot het einde van de *paragraaf*         | `X`      |
     | Alle tekst tussen haakjes `(...)`        | `X`      |
@@ -63,12 +63,12 @@ Maak ook een bestand aan met de naam `autokentekens` met deze inhoud:
 
     | Te knippen                                  | Commando |
     | :---                                        | :---     |
-    | Huidige regel                               | `X`      |
-    | Huidige regel en die eronder                | `X`      |
-    | Het huidige woord                           | `X`      |
-    | Het huidige en de twee volgende woorden     | `X`      |
-    | Het letterteken op de positie van de cursor | `X`      |
-    | Van de cursor tot het einde van de regel    | `X`      |
+    | Huidige regel                               | `dd`      |
+    | Huidige regel en die eronder                | `2dd`      |
+    | Het huidige woord                           | `dw`      |
+    | Het huidige en de twee volgende woorden     | `2dw`      |
+    | Het letterteken op de positie van de cursor | `x`      |
+    | Van de cursor tot het einde van de regel    | `d$`      |
     | Tot het einde van de *zin*                  | `X`      |
     | Tot het einde van de *paragraaf*            | `X`      |
     | Alle tekst tussen haakjes `(...)`           | `X`      |
@@ -78,8 +78,8 @@ Maak ook een bestand aan met de naam `autokentekens` met deze inhoud:
 
     | Tekst plakken          | Commando |
     | :---                   | :---     |
-    | Rechts/onder de cursur | `X`      |
-    | Op de cursur           | `X`      |
+    | Rechts/onder de cursur | `P`      |
+    | Op de cursur           | `p`      |
 
 De bedoeling van voorgaande oefening is om een idee te geven van hoe veelzijdig Vi is. Er zijn *veel* commando's, maar er zit een duidelijke logica in. Een voorbeeld is `ci{`: dit staat voor *Change inside braces*. Vim zal links en rechts van de cursor zoeken naar accolades, alle tekst ertussen verwijderen en naar insert mode gaan. Je kan in het commando de `{` vervangen door een ander teken zoals bv. `(`, `"`, `'`, `[`, `<`.
 
@@ -92,14 +92,14 @@ In onderstaande vragen is het telkens de bedoeling één commando te geven om de
 1. Voeg het bestand `landen` en `autokentekens` samen met het commando `join` (zoek de werking ervan op met het man-commando). Het resultaat wordt opgeslagen in het bestand `landenkentekens`.
 
     ```
-    $ COMMANDO
+    $ join landen autokentekens > landenkentekens
     UITVOER
     ```
 
 2. Bekijk de inhoud van `landenkentekens` en controleer of het overeenkomt met de uitvoer hieronder.
 
     ```
-    $ COMMANDO
+    $ vim landenkentekens
     1 België B
     2 Frankrijk F
     3 Zwitserland CH
@@ -110,14 +110,14 @@ In onderstaande vragen is het telkens de bedoeling één commando te geven om de
 3. Haal uit `landenkentekens` alleen kolom 2 en kolom 3 eruit en sla dit resultaat op als `landenkentekens2`.
 
     ```
-    $ COMMANDO
+    $ awk '{ printf "%s %s\n", $2, $3 }' landenkentekens > landenkentekens2
     UITVOER
     ```
 
 4. Controleer of de inhoud van `landenkentekens2` overeenkomt met de uitvoer hieronder.
 
     ```
-    $ COMMANDO
+    $ vim landenkentekens2
     België B
     Frankrijk F
     Zwitserland CH
