@@ -8,7 +8,7 @@ In deze repository vind je de labo-oefeningen voor Besturingssystemen/Linux van 
 - Klasgroep: PBA-TIN2-TI/2A
 - Naam van je lector: Bert Van Vreckem
 - Github gebruikersnaam: [Mustachipleb](https://github.com/Mustachipleb)
-- URL naar je Github-repository: <https://github.com/HoGentTIN/ilnx-Mustachipleb>
+- URL naar je Github-repository: <https://github.com/HoGentTIN/ilnx-labos-2021-Mustachipleb>
 
 ## Verslagen bijhouden
 
