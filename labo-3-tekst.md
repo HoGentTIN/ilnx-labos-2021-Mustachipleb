@@ -10,7 +10,7 @@ Bekijk ook eens de [presentatie over Vim en tmux](https://www.openminds.be/nl/bl
 
 Gebruik de Vi-editor om een bestand aan te maken met de naam `landen`. De inhoud is de volgende (incl. de cijfers):
 
-```
+```txt
 1 België
 2 Frankrijk
 3 Zwitserland
@@ -20,7 +20,7 @@ Gebruik de Vi-editor om een bestand aan te maken met de naam `landen`. De inhoud
 
 Maak ook een bestand aan met de naam `autokentekens` met deze inhoud:
 
-```
+```txt
 1 B
 2 F
 3 CH
@@ -30,7 +30,7 @@ Maak ook een bestand aan met de naam `autokentekens` met deze inhoud:
 
 1. Hoe start je Vi op om deze bestanden aan te maken?
 
-    ```
+    ```bash
     $ sudo vim BESTANDSNAAM
     UITVOER
     ```
@@ -73,8 +73,7 @@ Maak ook een bestand aan met de naam `autokentekens` met deze inhoud:
     | Tot het einde van de *paragraaf*            | `X`      |
     | Alle tekst tussen haakjes `(...)`           | `X`      |
 
-6. Hoe kan je gekopieerde/geknipte tekst plakken?
-
+5. Hoe kan je gekopieerde/geknipte tekst plakken?
 
     | Tekst plakken          | Commando |
     | :---                   | :---     |
@@ -91,14 +90,14 @@ In onderstaande vragen is het telkens de bedoeling één commando te geven om de
 
 1. Voeg het bestand `landen` en `autokentekens` samen met het commando `join` (zoek de werking ervan op met het man-commando). Het resultaat wordt opgeslagen in het bestand `landenkentekens`.
 
-    ```
+    ```bash
     $ join landen autokentekens > landenkentekens
     UITVOER
     ```
 
 2. Bekijk de inhoud van `landenkentekens` en controleer of het overeenkomt met de uitvoer hieronder.
 
-    ```
+    ```bash
     $ vim landenkentekens
     1 België B
     2 Frankrijk F
@@ -109,14 +108,14 @@ In onderstaande vragen is het telkens de bedoeling één commando te geven om de
 
 3. Haal uit `landenkentekens` alleen kolom 2 en kolom 3 eruit en sla dit resultaat op als `landenkentekens2`.
 
-    ```
+    ```bash
     $ awk '{ printf "%s %s\n", $2, $3 }' landenkentekens > landenkentekens2
     UITVOER
     ```
 
 4. Controleer of de inhoud van `landenkentekens2` overeenkomt met de uitvoer hieronder.
 
-    ```
+    ```bash
     $ vim landenkentekens2
     België B
     Frankrijk F
@@ -127,17 +126,15 @@ In onderstaande vragen is het telkens de bedoeling één commando te geven om de
 
 5. Voeg vanop de command-line Italië en Spanje toe aan het einde van `landenkentekens2` met hun respectievelijke kentekens. Je mag hier voor elk land een apart commando gebruiken.
 
-    ```
-    $ COMMANDO
-    UITVOER
+    ```bash
+    echo "Spanje E" >> landenkentekens2 && echo "Italie IT" >> landenkentekens2
     ```
 
 6. Sorteer `landenkentekens2` alfabetisch op de autokentekens. Sla het bekomen resultaat op in `gesorteerdeautokentekens`. Controleer het resultaat.
 
-    ```
-    $ COMMANDO
-    UITVOER
-    $ COMMANDO
+    ```bash
+    $ sort -k 2 landenkentekens2 > gesorteerdeautokentekens
+    $ cat gesorteerdeautokentekens
     België B
     Zwitserland CH
     Duitsland D
@@ -155,8 +152,8 @@ Sommige van onderstaande oefeningen maken gebruik van specifieke tekstbestanden 
 
 1. Bekijk de uitvoer van het commando `ip a` (opvragen van de IP-adressen van deze host). Filter de IPv4 (niet IPv6) adressen er uit:
 
-    ```
-    $ COMMANDO
+    ```bash
+    $ ip a | grep -Eo "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*/[0-9]*"
     127.0.0.1/8
     10.0.2.15/24
     192.168.56.101/24
@@ -168,16 +165,15 @@ Deze oefeningen gebeuren met `lorem.txt`
 
 1. Tel het aantal regels, wooren en tekens in `lorem.txt`
 
-    ```
-    $ COMMANDO
+    ```bash
+    $ wc lorem.txt
       45  404 2738 lorem.txt
     ```
 
 2. Herformatteer `lorem.txt` zodat elke tekstregel max. 50 lettertekens bevat en nummer daarna elke (niet-lege) regel. Het resultaat wordt weggeschreven in een nieuw bestand, `nlorem.txt`.
 
-    ```
-    $ COMMANDO
-    UITVOER
+    ```bash
+    sed -e 's/^*{50}/\0\n/g' lorem.txt | nl lorem.txt > nlorem.txt
     ```
 
 3. Druk een lijst af van alle individuele woorden in `lorem.txt` (negeer hoofdletters), samen met het aantal keer dat elk woord voorkomt. De lijst is omgekeerd gesorteerd op aantal voorkomens, en dan alfabetisch geordend. Werk stap voor stap:
@@ -187,19 +183,19 @@ Deze oefeningen gebeuren met `lorem.txt`
     - Maak een lijst met voor elk woord het aantal keer dat het voorkomt
     - Sorteer op het aantal voorkomens en behoud de alfabetische sortering van de woorden
 
-    ```
-    $ COMMANDO
-     11 sed 
-     10 et 
-      8 quis 
-      7 eget 
-      7 mi 
-      6 in 
-      6 nec 
-      6 nunc 
-      6 tortor 
-      5 ac 
-      5 accumsan 
+    ```bash
+    $ cat lorem.txt | tr ' ,.[:upper:]' '\n  [:lower:]' | sort | uniq -c | sort -nr
+     11 sed
+     10 et
+      8 quis
+      7 eget
+      7 mi
+      6 in
+      6 nec
+      6 nunc
+      6 tortor
+      5 ac
+      5 accumsan
     [...]
     ```
 
@@ -207,11 +203,10 @@ Deze oefeningen gebeuren met `lorem.txt`
 
 Vele tekstbestanden zijn gestructureerd als tabellen, bv. CSV (comma-separated values). Op een Linux-systeem zijn verschillende configuratiebestanden ook op zo'n manier opgedeeld, maar dan vaak met een `:` als scheidingsteken. In de volgende oefeningen werken we met het bestand `passwd`, dat zich ook in de `labo3`-directory bevindt.
 
-
 1. Schrijf in `users.txt` een gesorteerde lijst weg van gebruikers met een UID strikt groter dan 1000 (tip: gebruik hiervoor `awk`).
 
-    ```
-    $ COMMANDO
+    ```bash
+    $ awk -F ":" '$3 > 1000 {print $1}' passwd | sort > users.txt
     $ cat users.txt
     roberts
     ryu
@@ -223,21 +218,28 @@ Vele tekstbestanden zijn gestructureerd als tabellen, bv. CSV (comma-separated v
 
 2. Tel het aantal gebruikers in `users.txt`
 
+    ```bash
+    $ wc -l users.txt
+    6 users.txt
     ```
-    $ COMMANDO
-    UITVOER
+
+    Of:
+
+    ```bash
+    $ <users.txt wc -l
+    6
     ```
 
 3. Genereer voor elke gebruiker in `users.txt` een nieuw wachtwoord m.h.v. het commando `apg -n AANTAL` en schrijf deze weg in `newpass.txt`. Het aantal gebruikers in `users.txt` wordt berekend in de opdrachtregel.  Tip: gebruik "command substitution," notatie `$(commando)`. Dit zal het gegeven commando uitvoeren en de uitdrukking `$(...)` vervangen door de uitvoer (stdout) ervan.
 
-    ```
-    $ COMMANDO
+    ```bash
+    apg -n $(<users.txt wc -l) > newpass.txt
     ```
 
 4. Maak een tekstbestand `newusers.txt` met daarin de lijst van gebruikers uit `users.txt` en hun overeenkomstige wachtwoord uit `newpass.txt`, gescheiden door een TAB, vb:
 
-    ```
-    $ COMMANDO
+    ```bash
+    $ paste users.txt newpass.txt > newusers.txt
     $ cat newusers.txt
     roberts hewpopIrb6
     ryu     vicNimEp
@@ -249,8 +251,8 @@ Vele tekstbestanden zijn gestructureerd als tabellen, bv. CSV (comma-separated v
 
 5. Converteer `newusers.txt` naar een CSV-bestand `newusers.csv` waar de inhoud van elke kolom omgeven is door dubbele aanhalingstekens en gescheiden door een kommapunt.
 
-    ```
-    $ COMMANDO
+    ```bash
+    $ sed 's/[^\t][^\t]*/"&"/g' newusers.txt | tr '\t' ';' > newusers.csv && unlink newusers.txt
     $ cat newusers.csv
     "roberts";"hewpopIrb6"
     "ryu";"vicNimEp"
@@ -262,8 +264,8 @@ Vele tekstbestanden zijn gestructureerd als tabellen, bv. CSV (comma-separated v
 
 6. Druk een lijst af van de gebruikers in `passwd` die Bash als shell hebben, samen met hun UID en home-directory. Sorteer op UID.
 
-    ```
-    $ COMMANDO
+    ```bash
+    $ awk -F ':' '$7 ~ /bash/ {printf "%s:%s:%s\n", $1, $3, $6}' passwd | sort -t: -nk2
     root:0:/root
     vagrant:1000:/home/vagrant
     student:1001:/home/student
@@ -276,4 +278,4 @@ Vele tekstbestanden zijn gestructureerd als tabellen, bv. CSV (comma-separated v
 
 ## Gebruikte bronnen
 
-Vul hier aan welke interessante informatiebronnen je tegengekomen bent.
+[Vim Cheat Sheet](https://vim.rtorr.com/)
