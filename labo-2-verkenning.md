@@ -112,7 +112,6 @@ Vul de tabel hieronder aan. In de linkerkolom vind je de namen van een directory
 
 (*) Je kan het insteken van de cd simuleren in het VirtualBox-venster van je VM in het menu "Devices" > "Insert Guest Additions CD image..." (of het Nederlandstalige equivalent).
 
-
 ## Werken met bestanden en directories
 
 Om het verschil tussen een bestand en directory te verduidelijken, wordt in wat volgt de naam van een directory telkens afgesloten met “/”.
@@ -305,11 +304,11 @@ Creëer in de directory `linux/` een aantal lege bestanden met de naam `filea` t
 
 ```bash
 [student@localhost ~/linux] $ touch filea fileb filec filed
-[student@localhost ~/linux] $ for i in {1..19}; do touch "file${i}"; done 
-[student@localhost ~/linux] $ ls 
-f       file11  file14  file17  file2  file5  file8  fileb 
-file1   file12  file15  file18  file3  file6  file9  filec 
-file10  file13  file16  file19  file4  file7  filea  filed 
+[student@localhost ~/linux] $ for i in {1..19}; do touch "file${i}"; done
+[student@localhost ~/linux] $ ls
+f       file11  file14  file17  file2  file5  file8  fileb
+file1   file12  file15  file18  file3  file6  file9  filec
+file10  file13  file16  file19  file4  file7  filea  filed
 ```
 
 Toon met `ls` telkens de gevraagde bestanden, niet meer en niet minder.
