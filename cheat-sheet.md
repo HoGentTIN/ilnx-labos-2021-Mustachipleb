@@ -1,6 +1,10 @@
 # Cheat sheet
 
-Hou in dit bestand de belangrijkste commando's bij die je tegenkomt, zodat je die snel kan terugvinden. Steek structuur in het bestand en let op een [correct gebruik van Markdown](https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github/) zodat het overzichtelijk blijft. Voor inspiratie en motivatie voor het bijhouden van dit soort cheat sheets, ga eens kijken naar <https://github.com/bertvv/cheat-sheets/>.
+Voor inspiratie en motivatie voor het bijhouden van dit soort cheat sheets, ga eens kijken naar <https://github.com/bertvv/cheat-sheets/>.
+
+## Packages installeren
+
+`dnf install [PACKAGE]`
 
 ## Vim survival guide
 
@@ -14,3 +18,13 @@ Hou in dit bestand de belangrijkste commando's bij die je tegenkomt, zodat je di
 | Opslaan                    | `:w`     |
 | Opslaan en afsluiten       | `:wq`    |
 | Afsluiten zonder opslaan   | `:q!`    |
+
+## Bash scripting starter pack
+
+```sh
+#! /bin/bash/
+
+set -o errexit   # abort on nonzero exitstatus
+set -o nounset   # abort on unbound variable
+set -o pipefail  # don't hide errors within pipes
+```
