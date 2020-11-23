@@ -32,7 +32,7 @@ De unit tests van de oefeningen worden in volgorde uitgevoerd. Zolang er nog fou
 
 1. Maak een script met de naam `onderelkaar.sh` die de op de command line als argumenten ingevoerde zin woord per woord onder elkaar afdrukt op het scherm. Als de gebruiker geen argumenten opgegeven heeft, wordt er een gepaste foutboodschap op stderr afgedrukt en stopt het script met een foutcode (exit-status verschillend van 0). Voorbeeld van de uitvoer:
 
-    ```
+    ```bash
     $ ./onderelkaar.sh dit is een test
     dit
     is
@@ -80,3 +80,5 @@ De unit tests van de oefeningen worden in volgorde uitgevoerd. Zolang er nog fou
         - de directory waar de backup naartoe geschreven moet worden niet bestaat
 
 ## Gebruikte bronnen
+
+<https://github.com/dylanaraps/pure-bash-bible>
